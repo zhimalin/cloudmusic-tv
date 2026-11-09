@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      Android 14（API 34）要求 mediaPlayback 类型的前台服务同时声明基础权限和
+      类型化权限。POST_NOTIFICATIONS 是 Android 13+ 的运行时权限：
+      核心层只声明 + 建渠道，真正的 requestPermission 由 app 层在用户点播放时发起。
+      WAKE_LOCK 用于 setWakeMode(C.WAKE_MODE_NETWORK)：关屏后继续在线播放。
+    -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application>
+        <!--
+          exported=true 是 media3 的标准配置：通知栏、系统媒体面板、语音助手
+          都以外部 controller 的身份连到 MediaSessionService。
+        -->
+        <service
+            android:name=".PlaybackService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

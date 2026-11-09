@@ -1,0 +1,33 @@
+# 默认由 Git 判断文本/二进制，并做换行归一化
+* text=auto
+
+# Gradle wrapper 与所有 shell 脚本必须保持 LF，否则在 Linux/macOS 上无法执行
+gradlew text eol=lf
+*.sh   text eol=lf
+
+# Windows 批处理保持 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 源码统一 LF
+*.kt   text eol=lf
+*.kts  text eol=lf
+*.xml  text eol=lf
+*.md   text eol=lf
+*.mjs  text eol=lf
+*.py   text eol=lf
+*.toml text eol=lf
+*.properties text eol=lf
+
+# Windows 脚本保持 CRLF
+*.ps1 text eol=crlf
+
+# 二进制不要做任何处理
+*.jar binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.zip binary
+*.jks binary
+*.keystore binary

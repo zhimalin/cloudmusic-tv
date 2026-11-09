@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      This round only needs network access. Note that androidx.core also merges in
+      com.cloudmusic.tv.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION (a signature-level
+      self-permission) — that is normal AndroidX behaviour and is kept as-is.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- TV device: Leanback is optional so the APK also installs on plain Android. -->
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:banner="@drawable/banner"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CloudMusicTV">
+
+        <activity
+            android:name=".MainActivity"
+            android:banner="@drawable/banner"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize|uiMode|density"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.CloudMusicTV">
+
+            <!-- Regular launcher entry. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--
+              Android TV (Leanback) launcher entry. Required in addition to the normal
+              LAUNCHER entry: on an uncertified / GMS-free TV the launcher may only list
+              apps that advertise LEANBACK_LAUNCHER.
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

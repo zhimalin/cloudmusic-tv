@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App background, per spec: #0E0D11 -->
+    <color name="background">#0E0D11</color>
+    <!-- Placeholder brand color used by the launcher icon + TV banner. -->
+    <color name="placeholder_brand">#E8474B</color>
+</resources>

@@ -1,0 +1,59 @@
+# =============================================================================
+#  CloudMusicTV — 仓库根 .gitignore
+#
+#  这个工作区里有很多“不该进版本库”的东西：1 GB 的工具链、抓包得到的真实
+#  登录态、浏览器配置目录、构建产物、调试日志截图。下面按类别排除。
+# =============================================================================
+
+# ---- 工具链 / 分发包（约 1 GB，用 README 里的说明重新下载即可）----
+.toolchain/
+*.zip
+
+# ---- 凭据与抓包痕迹：含真实登录态，绝不外传 ----
+# tools/probe/cookie.json 里是一个真实有效的 MUSIC_U（等于账号密码）
+tools/webprobe/
+tools/probe/cookie.json
+tools/probe/out/
+tools/device-verify/
+tools/_*
+
+# ---- 构建产物 ----
+**/build/
+**/.gradle/
+**/.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.hprof
+
+# ---- 本机配置与签名材料 ----
+**/local.properties
+**/keystore.properties
+*.jks
+*.keystore
+
+# ---- IDE ----
+.idea/
+*.iml
+
+# ---- 调试残留：构建日志、真机截图、一次性脚本 ----
+*.log
+_tv*.png
+_now*.png
+_tap.png
+_state.png
+本地打开效果.png
+_apk.py
+_dex*.py
+_p[0-9].py
+_x.py
+
+# ---- 生成的静态站点/大纲导出 ----
+网易云TV客户端规划.html
+网易云TV客户端规划_files/
+
+# ---- 对话记录（个人内容，按需手动添加）----
+对话原文_完整.md
+参考_网易云播放界面.jpg
